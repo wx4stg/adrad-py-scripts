@@ -797,7 +797,7 @@ apply_georeference_corrections = FALSE;
 // Type: boolean
 //
 
-apply_azimuth_offset = FALSE;
+apply_azimuth_offset = TRUE;
 
 ///////////// azimuth_offset //////////////////////////
 //
@@ -810,7 +810,7 @@ apply_azimuth_offset = FALSE;
 // Type: double
 //
 
-azimuth_offset = 0;
+azimuth_offset = 1.8;
 
 ///////////// apply_elevation_offset //////////////////
 //
@@ -1451,7 +1451,7 @@ variable_transform_fields = {
 //     OUTPUT_FORMAT_NSSL_MRD
 //
 
-output_format = OUTPUT_FORMAT_UF;
+output_format = OUTPUT_FORMAT_NEXRAD;
 
 ///////////// netcdf_style ////////////////////////////
 //

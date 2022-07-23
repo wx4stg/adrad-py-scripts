@@ -8,7 +8,7 @@ do
         then
             mkdir adradDataIn/
         fi
-        rsync -uvcr --size-only --progress --protocol=30 -e "ssh -oKexAlgorithms=+diffie-hellman-group-exchange-sha1 -c aes128-cbc -i ~/.ssh/id_adrad" operator@adrad.geos.tamu.edu:/iris_data/product_raw/newest/. ./adradDataIn/
+        rsync -uvcr --size-only --progress --protocol=30 -e "ssh -oKexAlgorithms=+diffie-hellman-group-exchange-sha1 -c aes128-cbc -i ~/.ssh/id_adrad" operator@adrad.geos.tamu.edu:/iris_data/product_raw/newest/. ./input-realtime/
         sleep 10
         echo "Pull succeeded, waiting 10 seconds"
     else
