@@ -84,7 +84,7 @@ if __name__ == "__main__":
             # Create output directory if it doesn't already exist
             Path(path.dirname(L2outputPath)).mkdir(parents=True, exist_ok=True)
             # Convert tmp file to L2
-            system(f"/usr/local/lrose/bin/RadxConvert -f {ufoutputPath} -params {l2paramsPath} -outdir {path.dirname(L2outputPath)} -outname {path.basename(L2outputPath)}")
+            system(f"/usr/local/lrose/bin/RadxConvert -f {ufoutputPath} -params l2_params.txt -outdir {path.dirname(L2outputPath)} -outname {path.basename(L2outputPath)}")
         # Clean up
         remove(pathToRead)
         del(radar)
