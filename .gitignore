@@ -1,4 +1,6 @@
 input-realtime/
 input-archive/
-output-realtime/
+output-realtime/TAMU/
 output-archive/
+last_scan.uf
+processed.csv
