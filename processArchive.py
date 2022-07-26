@@ -4,6 +4,7 @@
 
 from os import path, listdir, system, remove
 from pathlib import Path
+from shutil import copyfile
 import pyart
 import numpy as np
 import sys
@@ -42,6 +43,7 @@ if __name__ == "__main__":
         print(f"Reading {pathToRead}")
         # Read file
         radar = pyart.io.read(pathToRead)
+        copyfile(pathToRead, path.join(basePath, "input-archive", file))
         # Get datetime object of radar scan time
         radarScanDT = pyart.util.datetime_from_radar(radar)
         print(radarScanDT.strftime("%Y-%m-%d %H:%M:%S"))
