@@ -5,6 +5,7 @@
 import sys
 import pyart
 from os import listdir, path, system, remove
+from shutil import copyfile
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -68,6 +69,7 @@ if __name__ == '__main__':
     for file in filesToRead:
         if file in alreadyProcessed:
             continue
+        copyfile(pathToRead, path.join(basePath, "input-archive", file))
         rdr = pyart.io.read(path.join(inputPath, file))
         radarScanDT = pyart.util.datetime_from_radar(rdr)
         if rdr.nsweeps > 1:
