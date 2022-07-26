@@ -9,4 +9,6 @@ Instructions for processing archived data:
 
 Instructions for running realtime processing of radar files while ADRAD is running:
 
-- (Coming soon...)
+- Edit config.txt with desired output paths for archival and real-time data. Make sure that the user account that executes these scripts has read and write permissions for the output directories
+- Run "run.sh"
+- Start the radar
