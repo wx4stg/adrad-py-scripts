@@ -2,6 +2,7 @@
 # ADRAD New Realtime Data Processing
 # Created 1 April 2022 by Sam Gardner <stgardner4@tamu.edu>
 
+import sys
 import pyart
 from os import listdir, path, system, remove
 from pathlib import Path
@@ -9,7 +10,11 @@ import numpy as np
 import pandas as pd
 
 basePath = path.dirname(path.realpath(__file__))
-outputDir = path.join(basePath, "output-realtime", "TAMU")
+if len(sys.argv) > 1:
+    outputDir = path.join(sys.argv[1], "TAMU")
+else:
+    outputDir = path.join(basePath, "output-realtime", "TAMU")
+
 
 def write_radar_object_to_GR2A(rdr, filepath):
     if "prt"  not in rdr.instrument_parameters:
@@ -79,6 +84,9 @@ if __name__ == '__main__':
         alreadyProcessedDF = pd.DataFrame(alreadyProcessed, columns=["files"])
         alreadyProcessedDF.to_csv(alreadyProcDataPath, index=False)
     
+    while len(listdir(outputDir)) > 10:
+        remove(path.join(outputDir, sorted(listdir(outputDir))[0]))
+
     dirListStr = "1 "+"\n1 ".join(sorted(listdir(outputDir)))
     with open(path.join(outputDir, "dir.list"), "w") as f:
         f.write(dirListStr)

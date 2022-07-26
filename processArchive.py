@@ -17,15 +17,22 @@ if __name__ == "__main__":
         Path(inputDir).mkdir(parents=True, exist_ok=True)
         print("Please place files to be converted in input-archive/")
         exit()
+    # Get path to default output
+    outputDir = path.join(basePath, "output-archive")
     # Check command line args to determine if we need to correct azimuth or not
-    if len(sys.argv) > 1 and sys.argv[1] == "--correct-az":
+    sysargs = sys.argv
+    if len(sysargs) > 1 and "--correct-az" in sysargs:
         l2paramsPath = path.join(basePath, "params_L2_az-offset.txt")
         ufparamsPath = path.join(basePath, "params_UF_az-offset.txt")
+        if len(sysargs) > 2:
+            sysargs.remove("--correct-az")
+            outputDir = sysargs[1]
+    elif len(sysargs) > 1 and "--correct-az" not in sys.argv:
+        outputDir = sysargs[1]
     else:
         l2paramsPath = path.join(basePath, "l2_params.txt")
         ufparamsPath = path.join(basePath, "uf_params.txt")
     # Create output directory if it doesn't already exist
-    outputDir = path.join(basePath, "output-archive")
     Path(outputDir).mkdir(parents=True, exist_ok=True)
     # Loop through files in input directory
     inputFiles = sorted(listdir(inputDir))
