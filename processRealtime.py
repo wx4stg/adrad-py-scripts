@@ -69,11 +69,12 @@ if __name__ == '__main__':
     for file in filesToRead:
         if file in alreadyProcessed:
             continue
+        pathToRead = path.join(inputPath, file)
         copyfile(pathToRead, path.join(basePath, "input-archive", file))
-        rdr = pyart.io.read(path.join(inputPath, file))
+        rdr = pyart.io.read(pathToRead)
         radarScanDT = pyart.util.datetime_from_radar(rdr)
         if rdr.nsweeps > 1:
-            write_radar_object_to_GR2A(rdr, path.join(inputPath, file))
+            write_radar_object_to_GR2A(rdr, pathToRead)
         elif rdr.nsweeps == 1:
             if path.exists(path.join(basePath, "last_scan.uf")):
                 lastRadarScan = pyart.io.read(path.join(basePath, "last_scan.uf"))
@@ -81,7 +82,7 @@ if __name__ == '__main__':
                 thisRadarScanEl = np.round(rdr.fixed_angle["data"][0], 1)
                 if thisRadarScanEl > lastRadarScanEl and pyart.util.datetime_from_radar(rdr) > pyart.util.datetime_from_radar(lastRadarScan):
                     rdr = pyart.util.join_radar(rdr, lastRadarScan)
-            write_radar_object_to_GR2A(rdr, path.join(inputPath, file))
+            write_radar_object_to_GR2A(rdr, pathToRead)
         alreadyProcessed.append(file)
         alreadyProcessedDF = pd.DataFrame(alreadyProcessed, columns=["files"])
         alreadyProcessedDF.to_csv(alreadyProcDataPath, index=False)
