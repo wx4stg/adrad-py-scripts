@@ -30,6 +30,8 @@ if __name__ == "__main__":
             outputDir = sysargs[1]
     elif len(sysargs) > 1 and "--correct-az" not in sys.argv:
         outputDir = sysargs[1]
+        l2paramsPath = path.join(basePath, "l2_params.txt")
+        ufparamsPath = path.join(basePath, "uf_params.txt")
     else:
         l2paramsPath = path.join(basePath, "l2_params.txt")
         ufparamsPath = path.join(basePath, "uf_params.txt")
