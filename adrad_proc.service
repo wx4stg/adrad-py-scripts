@@ -1,0 +1,14 @@
+[Unit]
+Description=adrad_proc
+After=syslog.target
+
+[Service]
+ExecStart=/bin/bash /h/stgardner4/adrad-py-scripts/run.sh
+Restart=always
+RestartSec=30
+WorkingDirectory=/h/stgardner4/adrad-py-scripts/
+User=stgardner4
+SyslogIdentifier=adrad_proc
+
+[Install]
+WantedBy=multi-user.target
